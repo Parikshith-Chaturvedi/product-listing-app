@@ -2,6 +2,7 @@
 'use client'
 
 import React from 'react';
+import Image from 'next/image';
 
 interface Product {
     id: number;
@@ -19,7 +20,14 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     return (
         <div key={product.id} className="bg-white rounded-md overflow-hidden border border-slate-400">
-            <img src={product.image} alt={product.title} className="w-full h-48 object-cover" />
+            <Image
+                src={product.image}
+                alt={product.title}
+                className="w-full h-48 object-cover"
+                width={500}
+                height={500}
+            />
+            {/* <img src={product.image} alt={product.title} className="w-full h-48 object-cover" /> */}
             <div className="p-4">
                 <div className='min-h-20'>
                     <h3 className="text-lg font-medium mb-2">{product.title}</h3>
@@ -34,9 +42,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                     <p className="text-gray-500 mt-2">Category: {product.category}</p>
                     <p className="text-gray-600 font-semibold">${product.price}</p>
                 </div>
-                {/* <div className='grid-cols-6'>
-                           <p className="text-gray-600 font-semibold">${product.price}</p>
-                           </div> */}
             </div>
         </div>
     );
