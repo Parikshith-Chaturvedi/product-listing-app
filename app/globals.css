@@ -2,3 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    @apply h-full;
+  color: #1f2937;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+html {
+  @apply h-full;
+}
+main {
+  @apply h-full;
+}
