@@ -1,8 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: {
-        domains: ["fakestoreapi.com"],
-    },
+  experimental: {
+    appDir: true,
+  },
+  images: {
+    domains: ["fakestoreapi.com"],
+  },
 };
 
 export default nextConfig;

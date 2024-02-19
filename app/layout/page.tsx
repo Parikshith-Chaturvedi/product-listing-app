@@ -1,6 +1,6 @@
-// index.tsx
 import React, { useEffect, useState } from 'react';
 import { fetchProducts } from '../utils/api';
+import getProducts from '@/lib/getProducts';
 import ProductList from '../components/ProductList';
 import Pagination from '../components/Pagination';
 import Filter from '../components/Filter';
@@ -27,6 +27,7 @@ const ProductHome: React.FC = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [sortOrder, setSortOrder] = useState<'asc' | 'desc' | ''>('');
+    const [dataLoaded, setDataLoaded] = useState(false);
 
     useEffect(() => {
         setLoading(true);
@@ -42,6 +43,7 @@ const ProductHome: React.FC = () => {
                 }, []);
                 setCategories(allCategories);
                 setTotalPages(Math.ceil(data.length / 10));
+                setDataLoaded(true); 
             })
             .catch((error) => setError('Error fetching products'))
             .finally(() => setLoading(false));
@@ -50,7 +52,6 @@ const ProductHome: React.FC = () => {
     useEffect(() => {
         handleSort(sortOrder);
     }, [sortOrder]);
-
 
     useEffect(() => {
         filterProducts(selectedCategory, query);
@@ -104,7 +105,9 @@ const ProductHome: React.FC = () => {
 
     return (
         <div className="container mx-auto px-4 py-8">
-            {!loading && !error && (
+            {loading && <p>Loading...</p>}
+            {error && <p>Error: {error}</p>}
+            {dataLoaded && !loading && !error && (
                 <>
                     <div className="flex flex-wrap">
                         <div className="w-2/5">
@@ -127,7 +130,6 @@ const ProductHome: React.FC = () => {
                     )}
                 </>
             )}
-
         </div>
     );
 };
