@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect, useState } from 'react';
 import { fetchProducts } from '../utils/api';
 import getProducts from '@/lib/getProducts';
@@ -109,11 +110,11 @@ const ProductHome: React.FC = () => {
             {error && <p>Error: {error}</p>}
             {dataLoaded && !loading && !error && (
                 <>
-                    <div className="flex flex-wrap">
-                        <div className="w-2/5">
+                    <div className="md:flex flex-wrap">
+                        <div className="md:w-2/5 sm:w-full">
                             <SearchBar onSearch={handleSearch} />
                         </div>
-                        <div className="flex w-3/5 justify-end">
+                        <div className="flex md:w-3/5 justify-end">
                             <Filter categories={categories} selectedCategory={selectedCategory} onSelectCategory={handleCategoryChange} />
                             <Sort onSort={handleSort} />
                         </div>
